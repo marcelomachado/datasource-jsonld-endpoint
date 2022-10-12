@@ -1,0 +1,33 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@ldf/core/^3.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@ldf/datasource-jsonld-endpoint/^3.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@ldf/datasource-jsonld-endpoint",
+  "components": [
+    {
+      "@id": "ldfds:Datasource/JsonLdEndpoint",
+      "@type": "Class",
+      "extends": "ldfc:Datasource",
+      "requireElement": "datasources.JsonLdEndpointDatasource",
+      "comment": "A JsonLdEndpointDatasource provides access to a JSON-LD endpoint",
+      "parameters": [
+        {
+          "@id": "ldfds:Datasource/JsonLdEndpoint#endpoint",
+          "comment": "The JSON-LD endpoint URL",
+          "range": "xsd:string",
+          "unique": true
+        }
+      ],
+      "constructorArguments": {
+        "extends": "ldfc:Datasource#constructorArgumentsObject",
+        "fields": [
+          {
+            "keyRaw": "endpoint",
+            "value": "ldfds:Datasource/JsonLdEndpoint#endpoint"
+          }
+        ]
+      }
+    }
+  ]
+}

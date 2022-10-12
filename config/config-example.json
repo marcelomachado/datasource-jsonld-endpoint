@@ -1,0 +1,16 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@ldf/server/^3.0.0/components/context.jsonld",
+  "@id": "urn:ldf-server:my",
+  "import": "preset-qpf:config-defaults.json",
+
+  "datasources": [
+    {
+      "@id": "urn:ldf-server:myJsonLdEndpointDatasource",
+      "@type": "JsonLdEndpointDatasource",
+      "datasourceTitle": "My JSON-LD Endpoint source",
+      "description": "My datasource with a JSON-LD endpoint back-end",
+      "datasourcePath": "myjsonldendpoint",
+      "jsonLdEndpoint": "https://api.conceptnet.com/query"
+    }
+  ]
+}

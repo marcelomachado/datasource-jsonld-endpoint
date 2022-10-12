@@ -1,0 +1,38 @@
+{
+  "name": "@ldf/datasource-jsonld-endpoint",
+  "version": "1.0.0",
+  "lsd:module": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Linked Data Fragments Server - JSON-LD Endpoint Datasource",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "components",
+    "lib/**/*.js",
+    "index.js"
+  ],
+  "devDependencies": {
+    "@ldf/core": "^3.2.1",
+    "chai": "^4.3.6",
+    "eslint": "^8.25.0",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0"
+  },
+  "scripts": {
+    "test": "nyc mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcelomachado/datasource-jsonld-endpoint.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcelomachado/datasource-jsonld-endpoint/issues"
+  }
+}
