@@ -38,7 +38,7 @@ Example:
 ## Usage in other packages
 
 When this module is used in a package other than `@ldf/server`,
-then the JSON-LD context `https://linkedsoftwaredependencies.org/contexts/@ldf/datasource-sparql.jsonld` must be imported.
+then the JSON-LD context `https://linkedsoftwaredependencies.org/contexts/@ldf/datasource-jsonld-endpoint.jsonld` must be imported.
 
 For example:
 ```
