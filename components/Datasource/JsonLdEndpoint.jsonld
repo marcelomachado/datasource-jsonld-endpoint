@@ -1,7 +1,7 @@
 {
   "@context": [
     "https://linkedsoftwaredependencies.org/bundles/npm/@ldf/core/^3.0.0/components/context.jsonld",
-    "https://github.com/marcelomachado/datasource-jsonld-endpoint/blob/main/components/context.jsonld"
+    "https://raw.githubusercontent.com/marcelomachado/datasource-jsonld-endpoint/main/components/context.jsonld"
   ],
   "@id": "npmd:@ldf/datasource-jsonld-endpoint",
   "components": [
