@@ -1,0 +1,9 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@ldf/datasource-jsonld-endpoint/^3.0.0/components/context.jsonld",
+  "@id": "npmd:@ldf/datasource-jsonld-endpoint",
+  "@type": "Module",
+  "requireName": "@ldf/datasource-jsonld-endpoint",
+  "import": [
+    "files-ldfdje:components/Datasource/JsonLdEndpoint.jsonld"
+  ]
+}

@@ -6,14 +6,14 @@
   "@id": "npmd:@ldf/datasource-jsonld-endpoint",
   "components": [
     {
-      "@id": "ldfds:Datasource/JsonLdEndpoint",
+      "@id": "ldfdje:Datasource/JsonLdEndpoint",
       "@type": "Class",
       "extends": "ldfc:Datasource",
       "requireElement": "datasources.JsonLdEndpointDatasource",
       "comment": "A JsonLdEndpointDatasource provides access to a JSON-LD endpoint",
       "parameters": [
         {
-          "@id": "ldfds:Datasource/JsonLdEndpoint#endpoint",
+          "@id": "ldfdje:Datasource/JsonLdEndpoint#endpoint",
           "comment": "The JSON-LD endpoint URL",
           "range": "xsd:string",
           "unique": true
@@ -24,7 +24,7 @@
         "fields": [
           {
             "keyRaw": "endpoint",
-            "value": "ldfds:Datasource/JsonLdEndpoint#endpoint"
+            "value": "ldfdje:Datasource/JsonLdEndpoint#endpoint"
           }
         ]
       }
