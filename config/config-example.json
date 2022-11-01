@@ -10,13 +10,7 @@
       "datasourceTitle": "My JSON-LD Endpoint source",
       "description": "My datasource with a JSON-LD endpoint back-end",
       "datasourcePath": "myjsonldendpoint",
-      "jsonLdEndpoint": "https://api.conceptnet.io/query",
-      "mappingConfig": {
-        "edge": "edge",
-        "subject": "start",
-        "predicate": "rel",
-        "object": "end"
-      }    
+      "jsonLdEndpoint": "https://api.conceptnet.io/query" 
     }
   ]
 }
