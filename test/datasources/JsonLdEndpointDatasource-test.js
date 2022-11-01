@@ -1,13 +1,14 @@
 /*! @license MIT ©2013-2016 Ruben Verborgh, Ghent University - imec */
 let JsonLdEndpointDatasource = require('../..').datasources.JsonLdEndpointDatasource;
 
-let Datasource = require('@ldf/core').datasources.Datasource,
-    fs = require('fs'),
-    path = require('path'),
-    URL = require('url');
+let Datasource = require('@ldf/core').datasources.Datasource;
+// fs = require('fs'),
+// path = require('path');
+// URL = require('url'),
+// dataFactory = require('n3').DataFactory;
 
-let jsonResult = fs.readFileSync(path.join(__dirname, '../../../../test/assets/sparql-quads-response.json'));
-let countResult = '"c"\n12345678\n';
+// let jsonResult = fs.readFileSync(path.join(__dirname, '../../../../test/assets/sparql-quads-response.json'));
+// let countResult = '"c"\n12345678\n';
 
 describe('JsonLdEndpointDatasource', () => {
   describe('The JsonLdEndpointDatasource module', () => {
@@ -58,118 +59,47 @@ describe('JsonLdEndpointDatasource', () => {
         done();
       });
     });
-
-    
-
-    describe('when invalid JSON is returned in response to the data query', () => {
-      let result, error;
-      before((done) => {
-        request.reset();
-        request.onFirstCall().returns(test.createHttpResponse('invalid', 'application/sparql-results+json'));
-        request.onSecondCall().returns(test.createHttpResponse(countResult, 'text/csv'));
-        let query = { subject: dataFactory.namedNode('abcd'), features: { quadPattern: true } };
-        result = datasource.select(query);
-        result.on('error', (e) => { error = e; done(); });
-      });
-
-      it('should emit an error', () => {
-        error.should.have.property('message', 'Error accessing SPARQL endpoint http://ex.org/sparql: The endpoint returned an invalid SPARQL results JSON response.');
-      });
-    });
-
-    describe('when invalid JSON is returned in response to the count query', () => {
-      let result, error;
-      before((done) => {
-        request.reset();
-        request.onFirstCall().returns(test.createHttpResponse(jsonResult, 'application/sparql-results+json'));
-        request.onSecondCall().returns(test.createHttpResponse('invalid', 'application/trig'));
-        let query = { subject: dataFactory.namedNode('abcde'), features: { quadPattern: true } };
-        result = datasource.select(query);
-        result.on('error', (e) => { error = e; done(); });
-      });
-
-      it('should emit an error', () => {
-        error.should.have.property('message', 'Error accessing SPARQL endpoint http://ex.org/sparql: COUNT query failed.');
-      });
-    });
-
-    describe('when the data query request errors', () => {
-      let result, error;
-      before((done) => {
-        request.reset();
-        let query = { subject: dataFactory.namedNode('abcde'), features: { quadPattern: true } };
-        result = datasource.select(query);
-        result.on('error', (e) => { error = e; done(); });
-        request.getCall(0).callArgWith(1, Error('query response error'));
-      });
-
-      it('should emit an error', () => {
-        error.should.have.property('message', 'Error accessing SPARQL endpoint http://ex.org/sparql: query response error');
-      });
-    });
-
-    describe('when the count query request errors', () => {
-      let result, totalCount;
-      before(() => {
-        request.reset();
-        let query = { subject: dataFactory.namedNode('abcdef'), features: { quadPattern: true } };
-        result = datasource.select(query);
-        request.returnValues[1].emit('error', new Error());
-        result.getProperty('metadata', (metadata) => { totalCount = metadata.totalCount; });
-      });
-
-      it('should emit a high count estimate', () => {
-        expect(totalCount).to.equal(1e9);
-      });
-    });
-  });
-
-  describe('A JsonLdEndpointDatasource instance with forceTypedLiterals true', () => {
-    let request = sinon.stub();
-    let datasource = new JsonLdEndpointDatasource({ dataFactory, endpoint: 'http://ex.org/sparql', request: request, forceTypedLiterals: true });
-    datasource.initialize();
-    
   });
 });
 
-function itShouldExecute(datasource, request, name, query, constructQuery, countQuery) {
-  describe('executing ' + name, () => {
-    let result, totalCount;
-    before(() => {
-      request.reset();
-      request.onFirstCall().returns(test.createHttpResponse(jsonResult, 'application/sparql-results+json'));
-      request.onSecondCall().returns(test.createHttpResponse(countResult, 'text/csv'));
-      result = datasource.select(query);
-      result.getProperty('metadata', (metadata) => { totalCount = metadata.totalCount; });
-    });
+// function itShouldExecute(datasource, request, name, query, constructQuery, countQuery) {
+//   describe('executing ' + name, () => {
+//     let result, totalCount;
+//     before(() => {
+//       request.reset();
+//       request.onFirstCall().returns(test.createHttpResponse(jsonResult, 'application/sparql-results+json'));
+//       request.onSecondCall().returns(test.createHttpResponse(countResult, 'text/csv'));
+//       result = datasource.select(query);
+//       result.getProperty('metadata', (metadata) => { totalCount = metadata.totalCount; });
+//     });
 
-    it('should request a matching CONSTRUCT query', () => {
-      request.should.have.been.called;
-      let url = URL.parse(request.firstCall.args[0].url, true);
-      (url.protocol + '//' + url.host + url.pathname).should.equal('http://ex.org/sparql');
-      url.query.query.should.equal(constructQuery);
-    });
+//     it('should request a matching CONSTRUCT query', () => {
+//       request.should.have.been.called;
+//       let url = URL.parse(request.firstCall.args[0].url, true);
+//       (url.protocol + '//' + url.host + url.pathname).should.equal('http://ex.org/sparql');
+//       url.query.query.should.equal(constructQuery);
+//     });
 
-    if (countQuery) {
-      it('should request a matching COUNT query', () => {
-        request.should.have.been.calledTwice;
-        let url = URL.parse(request.secondCall.args[0].url, true);
-        (url.protocol + '//' + url.host + url.pathname).should.equal('http://ex.org/sparql');
-        url.query.query.should.equal(countQuery);
-      });
-    }
-    else {
-      it('should use the cached COUNT result', () => {
-        request.should.have.been.calledOnce;
-      });
-    }
+//     if (countQuery) {
+//       it('should request a matching COUNT query', () => {
+//         request.should.have.been.calledTwice;
+//         let url = URL.parse(request.secondCall.args[0].url, true);
+//         (url.protocol + '//' + url.host + url.pathname).should.equal('http://ex.org/sparql');
+//         url.query.query.should.equal(countQuery);
+//       });
+//     }
+//     else {
+//       it('should use the cached COUNT result', () => {
+//         request.should.have.been.calledOnce;
+//       });
+//     }
 
-    it('should emit all triples in the SPARQL response', (done) => {
-      result.should.be.a.streamWithLength(55, done);
-    });
+//     it('should emit all triples in the SPARQL response', (done) => {
+//       result.should.be.a.streamWithLength(55, done);
+//     });
 
-    it('should emit the extracted count', () => {
-      expect(totalCount).to.equal(12345678);
-    });
-  });
-}
+//     it('should emit the extracted count', () => {
+//       expect(totalCount).to.equal(12345678);
+//     });
+//   });
+// }

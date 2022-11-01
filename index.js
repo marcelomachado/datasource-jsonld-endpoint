@@ -3,6 +3,6 @@
 
 module.exports = {
   datasources: {
-    JsonLdEndpointDatasource: require('./lib/datasources/JsonLdEndpointDatasource'),
+    JsonLdEndpointDatasource: require('./lib/datasource/JsonLdEndpointDatasource'),
   },
 };
