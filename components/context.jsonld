@@ -4,7 +4,8 @@
     {
       "npmd": "https://linkedsoftwaredependencies.org/bundles/npm/",
       "ldfdje": "npmd:@ldf/datasource-jsonld-endpoint/",
-      "files-ldfdje": "ldfdje:^3.0.0/",
+      "files-ldfdje": "ldfdje:^1.0.0/",
+
       "JsonLdEndpointDatasource": "ldfdje:Datasource/JsonLdEndpoint",
       "jsonLdEndpoint": "ldfdje:Datasource/JsonLdEndpoint#endpoint"
     }
