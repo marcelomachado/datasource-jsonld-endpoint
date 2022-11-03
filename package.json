@@ -16,13 +16,6 @@
     "lib/**/*.js",
     "index.js"
   ],
-  "devDependencies": {
-    "@ldf/core": "^3.2.1",
-    "chai": "^4.3.6",
-    "eslint": "^8.25.0",
-    "mocha": "^10.0.0",
-    "nyc": "^15.1.0"
-  },
   "scripts": {
     "test": "nyc mocha",
     "lint": "eslint bin/* lib test"
@@ -39,5 +32,12 @@
   "dependencies": {
     "jsonld": "^8.1.0",
     "lru-cache": "^7.14.0"
+  },
+  "peerDependencies": {
+    "@ldf/core": "^3.0.0"
+  },
+  "devDependencies": {
+    "@ldf/core": "^3.2.1",
+    "nyc": "^15.1.0"
   }
 }
